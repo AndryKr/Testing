@@ -8,4 +8,8 @@ public interface BoxService {
 
     void getInfoAdoutСontent();
 
+    void optimizeByWeight(double weight);
+
+    void optimizeByPrice(double weight);
+
 }

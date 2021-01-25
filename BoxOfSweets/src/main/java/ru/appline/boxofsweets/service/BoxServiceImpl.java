@@ -47,4 +47,20 @@ public class BoxServiceImpl implements BoxService {
         }
         System.out.println("------------------------------");
     }
+
+    @Override
+    public void optimizeByWeight(double weight) {
+        sweets.sort((sweet1, sweet2) -> sweet1.getWeight().compareTo(sweet2.getWeight()));
+        while (boxService.getTotalWeight() >= weight) {
+            sweets.remove(0);
+        }
+    }
+
+    @Override
+    public void optimizeByPrice(double weight) {
+        sweets.sort((sweet1, sweet2) -> sweet1.getPrice().compareTo(sweet2.getPrice()));
+        while (boxService.getTotalWeight() >= weight) {
+            sweets.remove(0);
+        }
+    }
 }

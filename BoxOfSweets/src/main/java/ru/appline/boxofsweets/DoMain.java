@@ -9,7 +9,6 @@ public class DoMain {
     public static void main(String[] args) {
         BoxDaoImpl boxDao = BoxDaoImpl.getInstance();
         BoxServiceImpl boxService = BoxServiceImpl.getInstance();
-        SmartOptimizationServiceImpl smartOptimizationService = SmartOptimizationServiceImpl.getInstance();
         boxDao.put(new Apple("Red", "Apple", 1.2, 10.0));
         boxDao.put(new Candy("Raffaello", "Candy", 0.3, 3.0));
         boxDao.put(new Chocolate("Bitter", "Chocolate", 1.0, 15.0));
@@ -24,10 +23,10 @@ public class DoMain {
 
         //TODO Открыть один из закоментированных блоков для проверки работы оптимизации.
 
-        /*smartOptimizationService.optimizeByPrice(2.3);
+        /*boxService.optimizeByPrice(2.3);
         boxService.getInfoAdoutСontent();*/
 
-        /*smartOptimizationService.optimizeByWeight(2.3);
+        /*boxService.optimizeByWeight(2.3);
         boxService.getInfoAdoutСontent();*/
     }
 }
