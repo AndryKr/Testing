@@ -1,26 +1,21 @@
 package ru.appline.boxofsweets.model;
 
 public class Apple extends Sweet {
-    private Integer id = 1;
-    private String name = "Apple";
-    private Double weight = 1.2;
-    private Double price = 10.0;
 
-    public Double getWeight() {
-        return weight;
-    }
+    private String color;
 
-    public Double getPrice() {
-        return price;
+    public Apple(String color, String name, Double weight, Double price) {
+        super(name, weight, price);
+        this.color = color;
     }
 
     @Override
     public String toString() {
-        return "Сладость {" +
-                "id=" + id +
-                ", имя='" + name + '\'' +
-                ", вес=" + weight +
-                ", цена=" + price +
+        return "Сладость{" +
+                "color=" + color +
+                ", name='" + name + '\'' +
+                ", weight=" + weight +
+                ", price=" + price +
                 '}';
     }
 }

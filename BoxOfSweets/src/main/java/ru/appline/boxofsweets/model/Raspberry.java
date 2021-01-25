@@ -1,26 +1,21 @@
 package ru.appline.boxofsweets.model;
 
 public class Raspberry extends Sweet {
-    private Integer id = 4;
-    private String name = "Raspberry";
-    private Double weight = 0.2;
-    private Double price = 2.0;
 
-    public Double getWeight() {
-        return weight;
-    }
+    private String condition;
 
-    public Double getPrice() {
-        return price;
+    public Raspberry(String condition, String name, Double weight, Double price) {
+        super(name, weight, price);
+        this.condition = condition;
     }
 
     @Override
     public String toString() {
-        return "Сладость {" +
-                "id=" + id +
-                ", имя='" + name + '\'' +
-                ", вес=" + weight +
-                ", цена=" + price +
+        return "Сладость{" +
+                "condition=" + condition +
+                ", name='" + name + '\'' +
+                ", weight=" + weight +
+                ", price=" + price +
                 '}';
     }
 }

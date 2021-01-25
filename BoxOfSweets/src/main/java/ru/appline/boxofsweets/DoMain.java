@@ -10,10 +10,10 @@ public class DoMain {
         BoxDaoImpl boxDao = BoxDaoImpl.getInstance();
         BoxServiceImpl boxService = BoxServiceImpl.getInstance();
         SmartOptimizationServiceImpl smartOptimizationService = SmartOptimizationServiceImpl.getInstance();
-        boxDao.put(new Apple());
-        boxDao.put(new Candy());
-        boxDao.put(new Chocolate());
-        boxDao.put(new Raspberry());
+        boxDao.put(new Apple("Red", "Apple", 1.2, 10.0));
+        boxDao.put(new Candy("Raffaello", "Candy", 0.3, 3.0));
+        boxDao.put(new Chocolate("Bitter", "Chocolate", 1.0, 15.0));
+        boxDao.put(new Raspberry("Fresh","Raspberry", 0.2, 2.0));
 
         boxService.getInfoAdoutСontent();
 

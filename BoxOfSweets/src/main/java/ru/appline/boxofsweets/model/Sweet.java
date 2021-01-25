@@ -1,10 +1,15 @@
 package ru.appline.boxofsweets.model;
 
 public abstract class Sweet {
-    Integer id;
-    String name;
-    Double weight;
-    Double price;
+    protected String name;
+    protected Double weight;
+    protected Double price;
+
+    public Sweet(String name, Double weight, Double price) {
+        this.name = name;
+        this.weight = weight;
+        this.price = price;
+    }
 
     public Double getWeight() {
         return weight;
@@ -15,12 +20,5 @@ public abstract class Sweet {
     }
 
     @Override
-    public String toString() {
-        return "Сладость{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", weight=" + weight +
-                ", price=" + price +
-                '}';
-    }
+    public abstract String toString();
 }
