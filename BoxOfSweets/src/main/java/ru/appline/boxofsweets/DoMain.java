@@ -1,18 +1,19 @@
 package ru.appline.boxofsweets;
 
-import ru.appline.boxofsweets.dao.*;
 import ru.appline.boxofsweets.model.*;
 import ru.appline.boxofsweets.service.*;
 
 
 public class DoMain {
     public static void main(String[] args) {
-        BoxDaoImpl boxDao = BoxDaoImpl.getInstance();
-        BoxServiceImpl boxService = BoxServiceImpl.getInstance();
-        boxDao.put(new Apple("Red", "Apple", 1.2, 10.0));
-        boxDao.put(new Candy("Raffaello", "Candy", 0.3, 3.0));
-        boxDao.put(new Chocolate("Bitter", "Chocolate", 1.0, 15.0));
-        boxDao.put(new Raspberry("Fresh","Raspberry", 0.2, 2.0));
+        BoxServiceImpl boxService = new BoxServiceImpl();
+        boxService.put(new Apple("Red", "Apple", 1.2, 10.0));
+        boxService.put(new Candy("Raffaello", "Candy", 0.3, 3.0));
+        boxService.put(new Chocolate("Bitter", "Chocolate", 1.0, 15.0));
+        boxService.put(new Raspberry("Fresh","Raspberry", 0.2, 2.0));
+        boxService.put(new Raspberry("Fresh","Raspberry", 0.3, 3.0));
+
+        boxService.delete(4);
 
         boxService.getInfoAdoutСontent();
 
