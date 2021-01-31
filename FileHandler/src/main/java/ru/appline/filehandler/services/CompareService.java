@@ -6,4 +6,9 @@ public interface CompareService {
 
     void wordsCounter(List<String> inputAsList);
 
+    void wordsStat();
+
+    void maxFrequencyWords();
+
+
 }

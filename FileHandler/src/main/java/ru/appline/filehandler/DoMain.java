@@ -10,6 +10,8 @@ public class DoMain {
 
         FileScanner fileScanner = new FileScannerImpl();
         CompareService compareService = new CompareServiceImpl();
-        compareService.wordsCounter(fileScanner.readFile("src/resources/Word.txt"));
+        compareService.wordsCounter(fileScanner.readFile("src/main/resources/Word.txt"));
+        compareService.wordsStat();
+        compareService.maxFrequencyWords();
     }
 }

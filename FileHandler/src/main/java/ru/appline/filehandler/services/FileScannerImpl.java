@@ -12,9 +12,9 @@ public class FileScannerImpl implements FileScanner {
         if (file.exists()) {
             List<String> listOfWords = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                String input;
-                while ((input = br.readLine()) != null) {
-                    String[] inputArray = (input + " ").toLowerCase().split("\\p{P}?[ \\t\\n\\r]+");
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] inputArray = (line + " ").toLowerCase().split("\\p{P}?[ \\t\\n\\r]+");
                     Collections.addAll(listOfWords, inputArray);
                 }
             } catch (IOException e) {

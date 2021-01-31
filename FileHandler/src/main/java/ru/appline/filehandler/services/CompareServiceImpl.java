@@ -3,12 +3,11 @@ package main.java.ru.appline.filehandler.services;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class CompareServiceImpl implements CompareService {
+    Map<String, Integer> map = new HashMap<>();
 
     public void wordsCounter(List<String> listOfWords) {
-        Map<String, Integer> map = new HashMap<>();
         for (String s1 : listOfWords) {
             int counter = 1;
             map.put(s1, counter);
@@ -18,18 +17,21 @@ public class CompareServiceImpl implements CompareService {
                 }
             }
         }
+    }
 
+    public void wordsStat() {
         System.out.println("Статистика встречающихся слов в файле:");
         map.entrySet()
                 .stream()
                 .sorted(Map.Entry.comparingByKey())
                 .forEach(System.out::println);
+    }
 
-        System.out.println("Слова встречающееся максимальное число раз:");
-        Optional<Map.Entry<String, Integer>> min = map.entrySet()
+    public void maxFrequencyWords() {
+        System.out.println("Слова встречающиеся максимальное число раз:");
+        System.out.println(map.entrySet()
                 .stream()
-                .max(Map.Entry.comparingByValue());
-
-        System.out.print(min.get());
+                .max(Map.Entry.comparingByValue())
+                .get());
     }
 }
