@@ -1,6 +1,5 @@
 package main.java.ru.appline.filehandler.services;
 
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +35,8 @@ public class CompareServiceImpl implements CompareService {
     }
 
     public void maxFrequencyWords() {
-        System.out.println("Слова встречающиеся максимальное число раз:");
+        System.out.println("Слово встречающееся максимальное число раз:");
+        map.entrySet().stream();
         System.out.println(map.entrySet()
                 .stream()
                 .max(Map.Entry.comparingByValue())
