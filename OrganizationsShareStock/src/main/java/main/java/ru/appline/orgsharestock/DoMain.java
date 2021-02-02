@@ -8,12 +8,13 @@ import main.java.ru.appline.orgsharestock.service.ServiceImpl;
 
 import java.io.*;
 import java.util.List;
+import java.util.Scanner;
 
 public class DoMain {
 
     public static void main(String[] args) {
 
-        try {
+        try (Scanner scanner = new Scanner(System.in)) {
             ObjectMapper objectMapper = new ObjectMapper();
 
             InputStream inputStream = new FileInputStream("src/main/resources/CompaniesData.json");
@@ -22,10 +23,18 @@ public class DoMain {
             });
 
             Service service = new ServiceImpl();
-            service.printAllCompanies(organizations);
-            service.printPastDueSecurities(organizations);
-            service.printCompaniesBasedAfterDate(organizations, "10.12.1999");
-            service.printSecuritiesUsingCurrency(organizations, "RUB");
+            service.printAllOrganization(organizations);
+            service.printAllOverdueSecurities(organizations);
+
+            System.out.println("Чтобы получить список организаций основаных после конкретной даты веедите дату " +
+                    "\n в формате dd/MM/yyyy, dd/MM/yy, dd.MM.yyyy или dd.MM.yy");
+            String date = scanner.nextLine();
+            service.printOrganizationsBasedAfterDate(organizations, date);
+
+            System.out.println("Чтобы получить список ценных бумаг по валюте введите наименование валюты " +
+                    "\n из следующих вариантов: RUB, USD, EUR или UAH");
+            String currency = scanner.nextLine();
+            service.printSecuritiesUsingCurrency(organizations, currency);
 
         } catch (FileNotFoundException e) {
             System.out.println(e);
