@@ -12,6 +12,7 @@ public class DoMain {
 
         FileScanner fileScanner = new FileScannerImpl();
         CompareService compareService = new CompareServiceImpl();
+
         List<String> list = fileScanner.readFile("src/main/resources/Word.txt");
         compareService.sortAlphabetically(list);
         compareService.wordsCounter(list);

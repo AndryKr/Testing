@@ -1,8 +1,6 @@
 package main.java.ru.appline.filehandler.services;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CompareServiceImpl implements CompareService {
     Map<String, Integer> map = new HashMap<>();
@@ -35,11 +33,16 @@ public class CompareServiceImpl implements CompareService {
     }
 
     public void maxFrequencyWords() {
-        System.out.println("Слово встречающееся максимальное число раз:");
-        map.entrySet().stream();
-        System.out.println(map.entrySet()
-                .stream()
-                .max(Map.Entry.comparingByValue())
-                .get());
+        System.out.println("Слова встречающиеся максимальное число раз:");
+        Integer maxValue = 0;
+        for (Integer i:
+                map.values()) {
+            if (i > maxValue) {
+                maxValue = i;
+            }
+        }
+
+        Integer finalMaxValue = maxValue;
+        map.entrySet().stream().filter(x -> x.getValue() >= finalMaxValue).forEach(System.out::println);
     }
 }

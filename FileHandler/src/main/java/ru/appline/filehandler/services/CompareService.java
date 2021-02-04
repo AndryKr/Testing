@@ -11,6 +11,4 @@ public interface CompareService {
     void wordsStat();
 
     void maxFrequencyWords();
-
-
 }
