@@ -21,7 +21,7 @@ public class FormTest {
 
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(47, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 10, 1000);
 
@@ -38,21 +38,21 @@ public class FormTest {
             webElementLists.get(0).click();
         }
 
-        String forCompanyLinkXPass = "//a[@href='https://www.rgs.ru/products/juristic_person/index.wbp']";
+        String forCompanyLinkXPass = "//div[@class='h3 adv-analytics-navigation-line2-link']/a[normalize-space()='Компаниям']";
         WebElement webElement = driver.findElement(By.xpath(forCompanyLinkXPass));
         webElement.click();
 
         Assert.assertEquals("Заголовок отсутствует | Не соответствует требуемому",
                 "Корпоративное страхование для компаний | Росгосстрах", driver.getTitle());
 
-        String healthcareLinkXPass = "//a[@href='/products/juristic_person/health/index.wbp']";
+        String healthcareLinkXPass = "//div[@class='list-group list-group-rgs-menu collapse']/a[normalize-space()='Здоровье']";
         WebElement healthcare = driver.findElement(By.xpath(healthcareLinkXPass));
         healthcare.click();
 
         Assert.assertEquals("Заголовок отсутствует | Не соответствует требуемому",
                 "ДМС для сотрудников - добровольное медицинское страхование от Росгосстраха", driver.getTitle());
 
-        String dmsLinkXPass = "//a[@href='/products/juristic_person/health/dms/index.wbp']";
+        String dmsLinkXPass = "//a[normalize-space()='Добровольное медицинское страхование']";
         WebElement dms = driver.findElement(By.xpath(dmsLinkXPass));
         dms.click();
 
@@ -71,20 +71,23 @@ public class FormTest {
 
 
         String fieldXPass = "//*[@name='%s']";
-        fillInputField(driver.findElement(By.xpath(String.format(fieldXPass, "LastName"))), "IVANOV");
-        fillInputField(driver.findElement(By.xpath(String.format(fieldXPass, "FirstName"))), "IVAN");
-
-        String phoneXPath = "//div[@class='form-group col-md-6 col-xs-12 validation-group-has-error']//input";
-        selectField(driver.findElement(By.xpath(phoneXPath)), "Москва");
-
+        fillInputField(driver.findElement(By.xpath(String.format(fieldXPass, "LastName"))), "Иванов");
+        fillInputField(driver.findElement(By.xpath(String.format(fieldXPass, "FirstName"))), "Пётр");
+        String selectXPath = "//select";
+        selectField(driver.findElement(By.xpath(selectXPath)), "Москва");
+        String phoneXPath = "//label[text()='Телефон']/..//input";
+        fillPhoneField(driver.findElement(By.xpath(phoneXPath)), "9998887799");
         fillInputField(driver.findElement(By.xpath(String.format(fieldXPass, "Email"))), "qwreqwrwqrwe");
-        fillInputField(driver.findElement(By.xpath(String.format(fieldXPass, "ContactDate"))), "19.08.1992");
+        fillInputField(driver.findElement(By.xpath(String.format(fieldXPass, "ContactDate"))), "19.08.2022");
         fillInputField(driver.findElement(By.xpath(String.format(fieldXPass, "Comment"))), "Я согласен на обработку");
-        fillInputField(driver.findElement(By.xpath("//*[@class='checkbox']")), "true");
+        fillCheckBox(driver.findElement(By.xpath("//*[@class='checkbox']")), "on");
 
 
-        // Нажать на кнопку "Отправить"
         driver.findElement(By.xpath("//*[@id='button-m']")).click();
+
+        String errorMsg = driver.findElement(By.xpath("//*[@name='Email']/..//span")).getText();
+        Assert.assertEquals("У поля Email присутствует сообщение об ошибке",
+                "Введите адрес электронной почты", errorMsg);
     }
 
 
@@ -110,11 +113,25 @@ public class FormTest {
         Assert.assertEquals("Поле было заполнено не корректно", value, webElement.getAttribute("value"));
     }
 
+    private void fillPhoneField(WebElement webElement, String value) {
+        scrollToElementJs(webElement);
+        waitUtilElementToBeClickable(webElement);
+        webElement.click();
+        webElement.sendKeys(value);
+    }
+
+    private void fillCheckBox(WebElement webElement, String value) {
+        scrollToElementJs(webElement);
+        webElement.click();
+        webElement.sendKeys(value);
+        Assert.assertEquals("Поле было заполнено не корректно", value, webElement.getAttribute("value"));
+    }
+
     private void selectField(WebElement webElement, String value) {
         scrollToElementJs(webElement);
         waitUtilElementToBeClickable(webElement);
         webElement.click();
-        String fieldXPass = "//*[contains(@name, 'Region')]//*[contains(string(), '%S')]";
+        String fieldXPass = "//option[text()='%s']";
         WebElement region = driver.findElement(By.xpath(String.format(fieldXPass, value)));
         region.click();
     }
