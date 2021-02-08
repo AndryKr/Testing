@@ -86,7 +86,7 @@ public class FormTest {
         driver.findElement(By.xpath("//*[@id='button-m']")).click();
 
         String errorMsg = driver.findElement(By.xpath("//*[@name='Email']/..//span")).getText();
-        Assert.assertEquals("У поля Email присутствует сообщение об ошибке",
+        Assert.assertEquals("У поля Email отсутствует | Не соответствует требуемому сообщение об ошибке",
                 "Введите адрес электронной почты", errorMsg);
     }
 
